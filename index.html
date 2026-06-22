@@ -1,111 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNAB Daily Productivity</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNAB Daily Field Productivity</title>
 <style>
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
-body {
-  margin: 0; background: #ffffff; color: #111827;
-  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px; line-height: 1.5;
-}
-.wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
-header h1 { font-size: 20px; margin: 0 0 4px; }
-header .sub { color: #6b7280; font-size: 12px; }
-.banner {
-  margin: 18px 0; padding: 12px 16px; border-radius: 8px;
-  background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; font-weight: 600;
-}
-.banner .names { font-weight: 400; color: #b91c1c; display: block; margin-top: 4px; }
-.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
-.kpi { border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; background: #fff; }
-.kpi .num { font-size: 26px; font-weight: 700; }
-.kpi .lbl { color: #6b7280; font-size: 12px; margin-top: 2px; }
-.kpi.red .num { color: #dc2626; }
-.kpi.amber .num { color: #d97706; }
-h2 { font-size: 15px; margin: 26px 0 10px; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e5e7eb; }
-th { background: #f9fafb; color: #374151; font-weight: 600; }
-tr.absent td { background: #fef2f2; }
-.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; }
-.pill.red { background: #fee2e2; color: #b91c1c; }
-.pill.amber { background: #fef3c7; color: #92400e; }
-.pill.green { background: #dcfce7; color: #166534; }
-.notes {
-  margin: 26px 0; padding: 14px 16px; border-radius: 8px;
-  background: #fffbeb; border: 1px solid #fde68a; color: #78350f; font-size: 12.5px;
-}
-.notes h3 { margin: 0 0 8px; font-size: 13px; }
-.notes ul { margin: 0; padding-left: 18px; }
-.notes li { margin: 3px 0; }
-.empty {
-  margin: 30px 0; padding: 40px; text-align: center; color: #6b7280;
-  border: 1px dashed #d1d5db; border-radius: 12px; background: #fafafa;
-}
-.empty .big { font-size: 16px; font-weight: 600; color: #374151; }
-footer { margin-top: 30px; color: #9ca3af; font-size: 11.5px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header>
-    <h1>KNAB Field Productivity — Daily</h1>
-    <div class="sub">Target date: <strong>Sat 20 Jun 2026</strong> &nbsp;·&nbsp; Last refreshed: 21 Jun 2026, 07:08 IST</div>
-  </header>
+body { margin:0; background:#ffffff; color:#111827; font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; line-height:1.5; }
+.wrap { max-width:1100px; margin:0 auto; padding:20px 22px 48px; }
+h1 { font-size:20px; margin:0 0 2px; }
+.sub { color:#6b7280; font-size:12px; margin-bottom:16px; }
+.banner-red { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:10px 14px; border-radius:8px; margin:10px 0; }
+.banner-blue { background:#eff6ff; border:1px solid #bfdbfe; color:#1e40af; padding:8px 14px; border-radius:8px; margin:8px 0; }
+.banner-amber { background:#fffbeb; border:1px solid #fde68a; color:#92400e; padding:12px 14px; border-radius:8px; margin:16px 0; }
+.banner-amber h4 { margin:0 0 6px; font-size:13px; }
+.banner-amber ul { margin:4px 0 0; padding-left:18px; }
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:16px 0 20px; }
+.kpi { border:1px solid #e5e7eb; border-radius:10px; padding:14px 16px; background:#fafafa; }
+.kpi .n { font-size:26px; font-weight:700; }
+.kpi .l { color:#6b7280; font-size:12px; margin-top:2px; }
+.kpi.warn .n { color:#b45309; }
+.kpi.bad .n { color:#b91c1c; }
+table { width:100%; border-collapse:collapse; margin:6px 0 24px; }
+th,td { border-bottom:1px solid #e5e7eb; padding:9px 10px; text-align:left; vertical-align:top; }
+th { font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:#6b7280; background:#f9fafb; }
+td.c, th.c { text-align:center; }
+td.nm { font-weight:600; white-space:nowrap; }
+tr.absent-row td { background:#fef2f2; }
+.pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:600; margin:1px 2px 1px 0; white-space:nowrap; }
+.pill.red { background:#fee2e2; color:#991b1b; }
+.pill.amber { background:#fef3c7; color:#92400e; }
+.pill.green { background:#dcfce7; color:#166534; }
+.tag-nc { display:inline-block; background:#ede9fe; color:#5b21b6; padding:1px 7px; border-radius:999px; font-size:10px; font-weight:600; }
+h2 { font-size:15px; margin:26px 0 6px; border-top:1px solid #e5e7eb; padding-top:18px; }
+.repblock { margin:14px 0 18px; }
+.repblock h3 { font-size:14px; margin:0 0 8px; }
+.rmeta { font-weight:400; color:#6b7280; font-size:12px; }
+.visit { border:1px solid #e5e7eb; border-left:3px solid #d1d5db; border-radius:6px; padding:8px 12px; margin:6px 0; }
+.vhead { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.chk { font-family:ui-monospace,Menlo,monospace; font-size:12px; background:#f3f4f6; padding:1px 6px; border-radius:4px; }
+.vtime { color:#374151; font-size:12px; }
+.vcust { margin-top:3px; }
+.vaddr { color:#6b7280; font-size:12px; margin-top:1px; }
+.empty { text-align:center; padding:48px; color:#6b7280; border:1px dashed #d1d5db; border-radius:10px; }
+.foot { margin-top:30px; color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-top:12px; }
+</style></head>
+<body><div class="wrap">
+<h1>KNAB Finance — Daily Field Productivity</h1>
+<div class="sub">Target: <b>Fri 19 Jun 2026</b> &amp; <b>Sat 20 Jun 2026</b> (Monday run — Fri+Sat combined; Sat had no logged visits) · Refreshed Mon 22 Jun 2026, 07:20 IST</div>
+<div class="banner-red"><b>⚠ Absent (zero visits on target dates):</b> Rahul Dutta, Lallan</div>
 
-  <div class="banner">
-    No visits logged on 20 Jun 2026 — all 6 rostered RMs show zero activity.
-    <span class="names">Absent: Rahul Dutta, Suraj Duppatla, NILADRI MUKHERJEE, Lallan, Kunal Kumar Jha, Prity Kumari</span>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="num">0</div><div class="lbl">Total visits</div></div>
-    <div class="kpi"><div class="num">0</div><div class="lbl">Reps active</div></div>
-    <div class="kpi red"><div class="num">6</div><div class="lbl">Reps absent</div></div>
-    <div class="kpi amber"><div class="num">6</div><div class="lbl">Flags raised</div></div>
-  </div>
-
-  <h2>Rep Summary</h2>
-  <table>
-    <thead>
-      <tr><th>Name</th><th>Visits</th><th>First In</th><th>Last Out</th><th>Active</th><th>In-Window (10–18)</th><th>Flags</th></tr>
-    </thead>
-    <tbody>
-      <tr class="absent"><td>Rahul Dutta</td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-      <tr class="absent"><td>Suraj Duppatla</td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-      <tr class="absent"><td>NILADRI MUKHERJEE</td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-      <tr class="absent"><td>Lallan</td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-      <tr class="absent"><td>Kunal Kumar Jha <span style="color:#6b7280">(newcomer)</span></td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-      <tr class="absent"><td>Prity Kumari</td><td>0</td><td>—</td><td>—</td><td>0m</td><td>0m</td><td><span class="pill red">Absent</span></td></tr>
-    </tbody>
-  </table>
-
-  <h2>Visit Detail</h2>
-  <div class="empty">
-    <div class="big">No visits logged</div>
-    <div>TrackOlap returned no Task-Form (Visit) records for 20 Jun 2026.<br>
-    This may reflect a non-working Saturday/holiday, or that no field check-ins were recorded.</div>
-  </div>
-
-  <div class="notes">
-    <h3>Standing analysis notes</h3>
-    <ul>
-      <li><strong>Rahul Dutta</strong> — watch for <em>GPS-mismatch</em>: check-in addresses (metro/petrol/hospital/cafe/furniture) that don't match the finance customer.</li>
-      <li><strong>Rahul Dutta &amp; Suraj Duppatla</strong> — watch for <em>Possible double-count</em>: overlapping visits to the same customer.</li>
-      <li><strong>NILADRI MUKHERJEE</strong> — watch for <em>Off-hours only</em>: activity concentrated outside the 10:00–18:00 window.</li>
-      <li><strong>Lallan</strong> — watch for <em>Late start</em>: first check-in after 12:00 noon.</li>
-      <li><strong>Kunal Kumar Jha</strong> — newcomer; show visits but skip fraud flags.</li>
-      <li><strong>Prity Kumari</strong> — added 20 May 2026; apply standard fraud flags and watch for duration anomalies (single visit &gt; 4h).</li>
-    </ul>
-  </div>
-
-  <footer>
-    Source: TrackOlap Task Form Report (Visit) · go.trackwick.com · Login: auto-logged in · Generated automatically by the KNAB morning productivity check.
-  </footer>
+<div class="kpis">
+  <div class="kpi"><div class="n">15</div><div class="l">Total visits</div></div>
+  <div class="kpi"><div class="n">4</div><div class="l">Reps active</div></div>
+  <div class="kpi bad"><div class="n">2</div><div class="l">Reps absent</div></div>
+  <div class="kpi warn"><div class="n">5</div><div class="l">Flags raised</div></div>
 </div>
-</body>
-</html>
+
+<h2 style="border-top:none;padding-top:0;">Rep summary</h2>
+<table>
+<thead><tr><th>Name</th><th class="c">Visits</th><th class="c">First In</th><th class="c">Last Out</th><th class="c">Active</th><th class="c">In-Window 10–18</th><th>Flags</th></tr></thead>
+<tbody>
+<tr class="absent-row">
+      <td class="nm">Rahul Dutta</td>
+      <td class="c">0</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td><span class="pill red">Absent</span></td></tr>
+<tr class="absent-row">
+      <td class="nm">Lallan</td>
+      <td class="c">0</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td class="c">—</td>
+      <td><span class="pill red">Absent</span></td></tr>
+<tr>
+      <td class="nm">Prity Kumari</td>
+      <td class="c">4</td>
+      <td class="c">11:46</td>
+      <td class="c">16:26</td>
+      <td class="c">4h 9m</td>
+      <td class="c">4h 9m</td>
+      <td><span class="pill red">GPS-mismatch</span></td></tr>
+<tr>
+      <td class="nm">NILADRI MUKHERJEE</td>
+      <td class="c">4</td>
+      <td class="c">16:37</td>
+      <td class="c">20:14</td>
+      <td class="c">1h 39m</td>
+      <td class="c">51m</td>
+      <td><span class="pill red">GPS-mismatch</span> <span class="pill amber">Late start</span></td></tr>
+<tr>
+      <td class="nm">Kunal Kumar Jha <span class='tag-nc'>newcomer</span></td>
+      <td class="c">4</td>
+      <td class="c">12:26</td>
+      <td class="c">16:00</td>
+      <td class="c">1h 6m</td>
+      <td class="c">1h 6m</td>
+      <td><span class="pill green">clean</span></td></tr>
+<tr>
+      <td class="nm">Suraj Duppatla</td>
+      <td class="c">3</td>
+      <td class="c">11:40</td>
+      <td class="c">13:21</td>
+      <td class="c">46m</td>
+      <td class="c">46m</td>
+      <td><span class="pill green">clean</span></td></tr>
+</tbody></table>
+
+<h2>Visit detail</h2>
+<div class="repblock">
+      <h3>Prity Kumari <span class="rmeta">4 visits · 11:46–16:26 · active 4h 9m</span></h3>
+      <div class="visit">
+          <div class="vhead"><span class="chk">CHK-6930</span><span class="vtime">14:45 → 16:26 · 01:40:18</span> <span class="pill red">GPS-mismatch</span></div>
+          <div class="vcust"><b>Andromeda</b></div>
+          <div class="vaddr">Check-in: Kay Dee Electronics, 1-B-1, Opposite, Metro Station Rd, Sector 18, Noida 201301</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6929</span><span class="vtime">13:53 → 14:16 · 00:23:08</span> <span class="pill red">GPS-mismatch</span></div>
+          <div class="vcust"><b>Shalu Arora</b></div>
+          <div class="vaddr">Check-in: Delhi Metro Pillar No 33, Lt Vijyant Thapar Marg, Chilla, Noida 201301</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6926</span><span class="vtime">13:03 → 13:52 · 00:48:54</span> <span class="pill red">GPS-mismatch</span></div>
+          <div class="vcust"><b>Grow Well</b></div>
+          <div class="vaddr">Check-in: Kirti Nagar Metro Station, Kirti Nagar (Blue Line), Shadipur, West Delhi 110015</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6923</span><span class="vtime">11:46 → 13:03 · 01:16:55</span> <span class="pill amber">Landmark check-in</span></div>
+          <div class="vcust"><b>Bajaj capital</b></div>
+          <div class="vaddr">Check-in: 239, Gali Number 9, Near Metro Pillar No, Block F, Sector 51, Noida 201304</div>
+        </div>
+</div>
+<div class="repblock">
+      <h3>NILADRI MUKHERJEE <span class="rmeta">4 visits · 16:37–20:14 · active 1h 39m</span></h3>
+      <div class="visit">
+          <div class="vhead"><span class="chk">CHK-6936</span><span class="vtime">19:38 → 20:14 · 00:36:12</span> <span class="pill red">GPS-mismatch</span> <span class="pill amber">Off-hours</span></div>
+          <div class="vcust"><b>AK Sengupta</b></div>
+          <div class="vaddr">Check-in: Rikshaw Stand, 5 No. Khalisha Kota Pally, 119, Chandpur Pally, Birati, Kolkata 700051</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6935</span><span class="vtime">18:33 → 18:45 · 00:12:06</span> <span class="pill amber">Off-hours</span></div>
+          <div class="vcust"><b>samit Mukherjee</b></div>
+          <div class="vaddr">Check-in: 61, Manik Bandhopadhyay Setu, Mahajati Nagar, Birati, North DumDum 700158</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6934</span><span class="vtime">17:30 → 17:54 · 00:23:16</span> </div>
+          <div class="vcust"><b>Basak investment</b></div>
+          <div class="vaddr">Check-in: 16, Swami Vivekananda Rd, Sukantapally, Shibachal, Birati, Kolkata 700051</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6933</span><span class="vtime">16:37 → 17:04 · 00:27:48</span> </div>
+          <div class="vcust"><b>TK Roy</b></div>
+          <div class="vaddr">Check-in: 1, Sahid Ganesh Dutta Rd, Khalisha Kota, Birati, North DumDum 700051</div>
+        </div>
+</div>
+<div class="repblock">
+      <h3>Kunal Kumar Jha <span class='tag-nc'>newcomer · fraud flags skipped</span> <span class="rmeta">4 visits · 12:26–16:00 · active 1h 6m</span></h3>
+      <div class="visit">
+          <div class="vhead"><span class="chk">CHK-6932</span><span class="vtime">15:43 → 16:00 · 00:16:52</span> </div>
+          <div class="vcust"><b>Encore Management services</b></div>
+          <div class="vaddr">Check-in: B-4, Basement, Padma Tower 2, Rajendra Place, New Delhi 110008</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6931</span><span class="vtime">15:10 → 15:11 · 00:00:51</span> </div>
+          <div class="vcust"><b>Bajaj capital</b></div>
+          <div class="vaddr">Check-in: J5VH+428, Patel Nagar Roundabout, Rajinder Nagar, New Delhi 110008</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6928</span><span class="vtime">13:13 → 13:46 · 00:33:33</span> </div>
+          <div class="vcust"><b>sparc Business Solution</b></div>
+          <div class="vaddr">Check-in: Mawana Sugars Limited, 5th Floor, Kirti Mahal, 19, Rajendra Place, New Delhi 110008</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6924</span><span class="vtime">12:26 → 12:41 · 00:15:21</span> </div>
+          <div class="vcust"><b>urban Money</b></div>
+          <div class="vaddr">Check-in: Talent Overseas, 705, 7th Floor, Pragati Tower 26, Prasad Nagar, Rajendra Place, New Delhi 110005</div>
+        </div>
+</div>
+<div class="repblock">
+      <h3>Suraj Duppatla <span class="rmeta">3 visits · 11:40–13:21 · active 46m</span></h3>
+      <div class="visit">
+          <div class="vhead"><span class="chk">CHK-6927</span><span class="vtime">13:07 → 13:21 · 00:14:01</span> </div>
+          <div class="vcust"><b>Bajaj capital Gachibowli</b></div>
+          <div class="vaddr">Check-in: 236, Opp. Fish Building, Attapur, Rajendra Nagar, Hyderabad 500030</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6925</span><span class="vtime">12:35 → 12:48 · 00:13:24</span> </div>
+          <div class="vcust"><b>krushna kireeti</b></div>
+          <div class="vaddr">Check-in: Shop No 10, 5, Saifabad Rd, Masab Tank, Hyderabad 500028</div>
+        </div>
+<div class="visit">
+          <div class="vhead"><span class="chk">CHK-6922</span><span class="vtime">11:40 → 11:59 · 00:18:48</span> </div>
+          <div class="vcust"><b>Pcs securities pvt ltd</b></div>
+          <div class="vaddr">Check-in: 18/2RT, Punjagutta Rd, Punjagutta Officers Colony, Hyderabad 500082</div>
+        </div>
+</div>
+
+
+<div class="banner-amber">
+<h4>Standing analysis notes</h4>
+<ul>
+<li><b>Rahul Dutta</b> — primary GPS-mismatch watch; <b>absent</b> on the target dates (zero visits), so no visit-level checks were possible.</li>
+<li><b>Suraj Duppatla</b> — double-count watch (overlapping visits to the same customer as Rahul Dutta). Not triggerable this run since Rahul logged no visits. Suraj's 3 Hyderabad visits look clean.</li>
+<li><b>NILADRI MUKHERJEE</b> — off-hours watch. First check-in 16:37 (Late start). Two of four visits (CHK-6935 18:33, CHK-6936 19:38) fall entirely after 18:00; off-window share 48.7%, just under the 50% "Off-hours only" threshold. CHK-6936 check-in is a "Rikshaw Stand" → GPS-mismatch.</li>
+<li><b>Lallan</b> — late-start watch; <b>absent</b> on the target dates (zero visits).</li>
+<li><b>Kunal Kumar Jha</b> — newcomer; visits shown, fraud flags intentionally skipped. (Note for context: CHK-6931 check-out was 51 seconds after check-in.)</li>
+<li><b>Prity Kumari</b> — added 20 May 2026, standard fraud flags applied. 3 of 4 check-ins are at metro stations / a metro pillar / an electronics store rather than the customer's registered office → GPS-mismatch pattern. CHK-6923 check-in references a metro pillar only as a street landmark (treated as a soft note, not a hard flag). No single visit exceeded 4h, so no duration anomaly.</li>
+</ul>
+</div>
+<!--GH_WARN-->
+<div class="foot">Source: TrackOlap Task Form Report (Visit), pulled via go.trackwick.com · KNAB Productivity Bot · Date range queried: "Last 3 Days" (19–21 Jun 2026), filtered to the Fri/Sat target.</div>
+</div></body></html>
