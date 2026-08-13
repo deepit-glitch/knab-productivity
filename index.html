@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KNAB Daily Field Productivity</title>
 <style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 24px;
-    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-size: 13px; line-height: 1.5;
-    background: #ffffff; color: #111827;
-  }
-  .wrap { max-width: 1100px; margin: 0 auto; }
-  h1 { font-size: 20px; margin: 0 0 4px; }
-  .sub { color: #6b7280; font-size: 12px; margin-bottom: 20px; }
-  .banner {
-    border-radius: 8px; padding: 14px 16px; margin: 0 0 20px;
-    font-weight: 600; font-size: 13px;
-  }
-  .banner-red { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
-  .banner-amber { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-weight: 500; }
-  .banner-amber b { color: #78350f; }
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
-  .kpi {
-    border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; background: #fafafa;
-  }
-  .kpi .num { font-size: 26px; font-weight: 700; color: #111827; }
-  .kpi .lbl { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
-  .empty {
-    border: 1px dashed #d1d5db; border-radius: 8px; padding: 48px 24px;
-    text-align: center; color: #6b7280; background: #fafafa;
-  }
-  .empty .big { font-size: 15px; font-weight: 600; color: #374151; margin-bottom: 6px; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
-  th { background: #f9fafb; font-weight: 600; color: #374151; }
-  .footer { color: #9ca3af; font-size: 11px; margin-top: 28px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
-  code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 11px; }
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111827;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 24px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 4px; }
+.sub { color: #6b7280; font-size: 12px; margin-bottom: 20px; }
+.banner {
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.banner.red { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+.banner.amber { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-weight: 500; }
+.banner .detail { font-weight: 400; margin-top: 6px; color: #7f1d1d; font-size: 12px; }
+.kpis { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.kpi {
+  flex: 1 1 160px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #f9fafb;
+}
+.kpi .num { font-size: 26px; font-weight: 700; }
+.kpi .lbl { color: #6b7280; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+.empty {
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  background: #fafafa;
+}
+.empty .big { font-size: 15px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+h2 { font-size: 14px; margin: 26px 0 10px; }
+footer { margin-top: 30px; color: #9ca3af; font-size: 11px; border-top: 1px solid #f3f4f6; padding-top: 12px; }
+.notes { line-height: 1.7; }
+.notes ul { margin: 6px 0 0; padding-left: 18px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>KNAB — Daily Field Productivity</h1>
-  <div class="sub">Target date: <b>Tue 11 Aug 2026</b> &nbsp;•&nbsp; Last refreshed: 12 Aug 2026, 07:04 IST</div>
+  <h1>KNAB Finance — Daily Field Productivity</h1>
+  <div class="sub">Target date: <strong>Wed 12 Aug 2026</strong> &nbsp;·&nbsp; Last refreshed: Thu 13 Aug 2026, 07:04 IST</div>
 
-  <div class="banner banner-red">
-    ⚠️ Could not pull data — TrackOlap login blocked. The login attempt returned:
-    <br>&nbsp;&nbsp;“App is Temporary Suspended, Please contact Admin.”
-    <br>Credentials in <code>trackolap-creds.json</code> appear correct (they were accepted into the form), but the TrackOlap application/account is currently suspended at the provider. No field-visit report could be generated for this date. Please contact the TrackOlap admin to restore access.
+  <div class="banner red">
+    &#9888;&#65039; Report could not be generated — Trackolap login blocked
+    <div class="detail">
+      The scheduled run reached the TrackOlap login page and submitted the configured credentials
+      (rahul.dutta@knabfinance.com), but the platform returned:
+      <em>"App is Temporary Suspended, Please contact Admin."</em>
+      This is an account/subscription status message from TrackOlap — not a wrong-password error — so no
+      field-visit data could be pulled for 12 Aug 2026. Please contact the TrackOlap administrator to
+      reactivate the KNAB account, then re-run this brief.
+    </div>
   </div>
 
   <div class="kpis">
@@ -61,22 +79,26 @@
 
   <div class="empty">
     <div class="big">No data available</div>
-    <div>The report could not be retrieved because TrackOlap access is suspended. This is not an empty-day result — it is a data-source outage. Once access is restored, the next scheduled run will populate this page normally.</div>
+    Data pull did not run because the TrackOlap application is currently suspended.
+    Rep productivity metrics and flags will populate automatically on the next successful run.
   </div>
 
-  <div class="banner banner-amber">
-    <b>Standing analysis notes (applied once data is available):</b><br>
-    • <b>Rahul Dutta</b> — watch for GPS-mismatch (check-in addresses tagged to non-customer locations like metro/petrol/hospital/cafe) and possible double-counts overlapping with Suraj Duppatla.<br>
-    • <b>Suraj Duppatla</b> — cross-check for double-count visits shared with Rahul Dutta at overlapping times.<br>
-    • <b>NILADRI MUKHERJEE</b> — watch for off-hours-only activity (first-in after 18:00 or &gt;50% active time outside 10:00–18:00 IST).<br>
-    • <b>Lallan</b> — watch for late starts (first-in after 12:00 noon).<br>
-    • <b>Kunal Kumar Jha</b> — newcomer; show visits but skip fraud flags.<br>
-    • <b>Prity Kumari</b> — added 20 May 2026; apply standard fraud flags, watch for duration anomalies (&gt;4h single visit).
+  <h2>Standing analysis notes</h2>
+  <div class="banner amber notes">
+    These watch-items are applied automatically once data is available:
+    <ul>
+      <li><strong>Rahul Dutta</strong> — watch for GPS-mismatch (check-in address not matching customer) and possible double-counts with Suraj Duppatla on overlapping customer visits.</li>
+      <li><strong>Suraj Duppatla</strong> — cross-check for overlapping/double-counted visits with Rahul Dutta.</li>
+      <li><strong>NILADRI MUKHERJEE</strong> — watch for off-hours-only activity (first-in after 18:00 or &gt;50% of active time outside 10:00–18:00).</li>
+      <li><strong>Lallan</strong> — watch for late starts (first check-in after 12:00 noon).</li>
+      <li><strong>Kunal Kumar Jha</strong> — newcomer; show visits but skip fraud flags.</li>
+      <li><strong>Prity Kumari</strong> — added 20 May 2026; apply standard flags, watch for duration anomalies (&gt;4h single visit = likely forgotten check-out).</li>
+    </ul>
   </div>
 
-  <div class="footer">
-    KNAB Productivity Bot • Automated morning check • Source: TrackOlap (go.trackwick.com) — access suspended at run time.
-  </div>
+  <footer>
+    KNAB Productivity Bot · Automated daily run · Source: TrackOlap (go.trackwick.com) · GitHub Pages mirror: deepit-glitch.github.io/knab-productivity
+  </footer>
 </div>
 </body>
 </html>
