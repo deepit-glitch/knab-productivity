@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Knab Daily Productivity",
+  "schemaVersion": 1,
+  "description": "Daily KNAB Finance field productivity report — auto-refreshed each morning from Trackolap. Shows per-rep visit counts, timings, GPS-mismatch flags, late start flags, and absent roster members."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -15,7 +22,6 @@ h1 { font-size:20px; margin:0 0 4px; font-weight:650; letter-spacing:-0.01em; }
 .sub { color:#6b7280; font-size:12px; margin-bottom:20px; }
 .banner { border-radius:8px; padding:14px 16px; margin-bottom:20px; font-size:13px; }
 .banner.red { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; }
-.banner.amber { background:#fffbeb; border:1px solid #fde68a; color:#92400e; }
 .banner strong { display:block; font-size:14px; margin-bottom:6px; }
 .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:22px; }
 .kpi { border:1px solid #e5e7eb; border-radius:8px; padding:14px 16px; background:#fff; }
@@ -32,6 +38,7 @@ tr:last-child td { border-bottom:none; }
 .pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:550; }
 .pill.grey { background:#f3f4f6; color:#4b5563; }
 .pill.amber { background:#fef3c7; color:#92400e; }
+.pill.red { background:#fee2e2; color:#991b1b; }
 .empty { padding:40px 16px; text-align:center; color:#6b7280; }
 .empty .big { font-size:15px; font-weight:600; color:#374151; margin-bottom:4px; }
 .notes { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:14px 16px; margin-bottom:20px; }
@@ -47,20 +54,22 @@ footer { color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-to
 <div class="wrap">
 
   <h1>KNAB Daily Field Productivity</h1>
-  <div class="sub">Target date: <strong>Thu 20 Aug 2026</strong> &nbsp;·&nbsp; Last refresh attempted: 21 Aug 2026, 07:05 IST</div>
+  <div class="sub">Target date: <strong>Fri 21 Aug 2026</strong> &nbsp;·&nbsp; Last refresh attempted: 22 Aug 2026, 07:06 IST</div>
 
   <div class="banner red">
-    <strong>Report could not be generated — TrackOlap is unavailable</strong>
-    The scheduled run reached the TrackOlap login page and submitted the saved credentials. The server rejected the
-    sign-in with: <code>App is Temporary Suspended, Please contact Admin.</code>
+    <strong>Report could not be generated — TrackOlap is still unavailable (day 2)</strong>
+    Today's run reached the TrackOlap login page and submitted the saved credentials. The server rejected the
+    sign-in with the same message as yesterday: <code>App is Temporary Suspended, Please contact Admin.</code>
     <br><br>
     This is an <strong>account/subscription-level suspension, not a wrong password</strong> — the message appears
     before any credential check, and a direct request to the report URL
-    (<code>/manager/report/template/TASK_FORM</code>) redirected straight back to the login screen, confirming there is
-    no usable session. Updating the credentials file will not resolve this.
+    (<code>/manager/report/template/TASK_FORM</code>) redirected straight back to
+    <code>/login?lp=/manager/report/template/TASK_FORM</code>, confirming there is no usable session.
+    Updating the credentials file will not resolve this.
     <br><br>
-    <strong style="display:inline">Action needed:</strong> contact your TrackOlap account admin or TrackOlap support to
-    have the workspace reactivated. Tomorrow's scheduled run will retry automatically, and 20 Aug data should be
+    <strong style="display:inline">Action needed:</strong> the outage has now persisted for two consecutive runs
+    (20 Aug and 21 Aug data both unretrieved). Please contact your TrackOlap account admin or TrackOlap support to
+    have the workspace reactivated. Tomorrow's scheduled run will retry automatically, and both days should be
     recoverable retroactively once access is restored.
   </div>
 
@@ -72,11 +81,11 @@ footer { color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-to
   </div>
 
   <div class="card">
-    <h2>Rep summary — Thu 20 Aug 2026</h2>
+    <h2>Rep summary — Fri 21 Aug 2026</h2>
     <div class="empty">
       <div class="big">No data retrieved</div>
       Source system unreachable. This is not a "zero visits" day — attendance and visit counts for
-      20 Aug are simply unknown. No absence, flag, or productivity conclusions should be drawn from this page.
+      21 Aug are simply unknown. No absence, flag, or productivity conclusions should be drawn from this page.
     </div>
   </div>
 
@@ -97,6 +106,19 @@ footer { color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-to
     </table>
   </div>
 
+  <div class="card">
+    <h2>Outage log</h2>
+    <table>
+      <thead>
+        <tr><th>Run</th><th>Target date</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>21 Aug 2026, 07:05 IST</td><td>Thu 20 Aug 2026</td><td><span class="pill red">Login rejected — app suspended</span></td></tr>
+        <tr><td>22 Aug 2026, 07:06 IST</td><td>Fri 21 Aug 2026</td><td><span class="pill red">Login rejected — app suspended</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="notes">
     <h3>Standing analysis notes</h3>
     <ul>
@@ -112,7 +134,7 @@ footer { color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-to
 
   <footer>
     KNAB Finance · automated daily run · data source: TrackOlap (go.trackwick.com) task-form visit report.
-    Run status: <strong>failed at login — source system suspended</strong>. Retries automatically each weekday morning.
+    Run status: <strong>failed at login — source system suspended (2nd consecutive day)</strong>. Retries automatically each weekday morning.
   </footer>
 
 </div>
