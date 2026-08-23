@@ -1,140 +1,141 @@
 <!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Knab Daily Productivity",
-  "schemaVersion": 1,
-  "description": "Daily KNAB Finance field productivity report — auto-refreshed each morning from Trackolap. Shows per-rep visit counts, timings, GPS-mismatch flags, late start flags, and absent roster members."
-}
-</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNAB Daily Field Productivity</title>
+<title>KNAB Finance — Daily Field Productivity</title>
 <style>
-:root { color-scheme: light; }
-* { box-sizing: border-box; }
-body { margin:0; background:#ffffff; color:#111827;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:13px; line-height:1.5; padding:24px; }
-.wrap { max-width:1080px; margin:0 auto; }
-h1 { font-size:20px; margin:0 0 4px; font-weight:650; letter-spacing:-0.01em; }
-.sub { color:#6b7280; font-size:12px; margin-bottom:20px; }
-.banner { border-radius:8px; padding:14px 16px; margin-bottom:20px; font-size:13px; }
-.banner.red { background:#fef2f2; border:1px solid #fecaca; color:#991b1b; }
-.banner strong { display:block; font-size:14px; margin-bottom:6px; }
-.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:22px; }
-.kpi { border:1px solid #e5e7eb; border-radius:8px; padding:14px 16px; background:#fff; }
-.kpi .n { font-size:24px; font-weight:650; letter-spacing:-0.02em; color:#374151; }
-.kpi .l { font-size:11px; color:#6b7280; text-transform:uppercase; letter-spacing:.04em; margin-top:2px; }
-.card { border:1px solid #e5e7eb; border-radius:8px; padding:0; margin-bottom:20px; overflow:hidden; }
-.card h2 { font-size:13px; font-weight:600; margin:0; padding:11px 16px; background:#f9fafb; border-bottom:1px solid #e5e7eb; }
-table { width:100%; border-collapse:collapse; }
-th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:#6b7280;
-  font-weight:600; padding:9px 16px; border-bottom:1px solid #e5e7eb; background:#f9fafb; }
-td { padding:10px 16px; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
-tr:last-child td { border-bottom:none; }
-.muted { color:#9ca3af; }
-.pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:550; }
-.pill.grey { background:#f3f4f6; color:#4b5563; }
-.pill.amber { background:#fef3c7; color:#92400e; }
-.pill.red { background:#fee2e2; color:#991b1b; }
-.empty { padding:40px 16px; text-align:center; color:#6b7280; }
-.empty .big { font-size:15px; font-weight:600; color:#374151; margin-bottom:4px; }
-.notes { background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:14px 16px; margin-bottom:20px; }
-.notes h3 { margin:0 0 8px; font-size:12px; font-weight:650; color:#92400e; text-transform:uppercase; letter-spacing:.04em; }
-.notes ul { margin:0; padding-left:18px; color:#78350f; }
-.notes li { margin-bottom:4px; }
-code { background:#f3f4f6; padding:1px 5px; border-radius:4px; font-size:11.5px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-footer { color:#9ca3af; font-size:11px; border-top:1px solid #e5e7eb; padding-top:12px; margin-top:8px; }
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px;
+    background: #ffffff; color: #111827;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px; line-height: 1.5;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; font-weight: 650; letter-spacing: -0.01em; }
+  .sub { color: #6b7280; font-size: 12px; margin-bottom: 20px; }
+  .sub strong { color: #374151; font-weight: 600; }
+
+  .banner { border-radius: 8px; padding: 14px 16px; margin-bottom: 18px; font-size: 13px; }
+  .banner h2 { margin: 0 0 6px; font-size: 13px; font-weight: 650; }
+  .banner p { margin: 0 0 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11.5px; background: rgba(0,0,0,.06); padding: 1px 5px; border-radius: 4px;
+  }
+  .banner-red { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+  .banner-amber { background: #fffbeb; border: 1px solid #fde68a; color: #78350f; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi { border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; background: #fff; }
+  .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #6b7280; margin-bottom: 6px; }
+  .kpi .value { font-size: 26px; font-weight: 650; line-height: 1; color: #9ca3af; }
+
+  h3.section { font-size: 13px; font-weight: 650; margin: 24px 0 10px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid #e5e7eb; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #6b7280; font-weight: 600; background: #f9fafb; border-top: 1px solid #e5e7eb; }
+  td.num { color: #9ca3af; }
+  tr.unknown td { background: #fcfcfd; }
+
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .pill-grey { background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; }
+  .pill-amber { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .pill-blue { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+
+  .empty {
+    border: 1px dashed #d1d5db; border-radius: 8px; padding: 32px; text-align: center;
+    color: #6b7280; background: #fafafa;
+  }
+  .empty .big { font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 4px; }
+
+  .notes { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 16px; color: #78350f; }
+  .notes h3 { margin: 0 0 8px; font-size: 12.5px; font-weight: 650; }
+  .notes ul { margin: 0; padding-left: 18px; }
+  .notes li { margin-bottom: 5px; }
+  .notes li:last-child { margin-bottom: 0; }
+
+  footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 11.5px; }
+  footer a { color: #2563eb; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <h1>KNAB Daily Field Productivity</h1>
-  <div class="sub">Target date: <strong>Fri 21 Aug 2026</strong> &nbsp;·&nbsp; Last refresh attempted: 22 Aug 2026, 07:06 IST</div>
+  <h1>KNAB Finance — Daily Field Productivity</h1>
+  <div class="sub">
+    Target date: <strong>Sat 22 Aug 2026</strong> &nbsp;·&nbsp; Last refreshed: <strong>23 Aug 2026, 07:05 IST</strong>
+  </div>
 
-  <div class="banner red">
-    <strong>Report could not be generated — TrackOlap is still unavailable (day 2)</strong>
-    Today's run reached the TrackOlap login page and submitted the saved credentials. The server rejected the
-    sign-in with the same message as yesterday: <code>App is Temporary Suspended, Please contact Admin.</code>
-    <br><br>
-    This is an <strong>account/subscription-level suspension, not a wrong password</strong> — the message appears
-    before any credential check, and a direct request to the report URL
-    (<code>/manager/report/template/TASK_FORM</code>) redirected straight back to
-    <code>/login?lp=/manager/report/template/TASK_FORM</code>, confirming there is no usable session.
-    Updating the credentials file will not resolve this.
-    <br><br>
-    <strong style="display:inline">Action needed:</strong> the outage has now persisted for two consecutive runs
-    (20 Aug and 21 Aug data both unretrieved). Please contact your TrackOlap account admin or TrackOlap support to
-    have the workspace reactivated. Tomorrow's scheduled run will retry automatically, and both days should be
-    recoverable retroactively once access is restored.
+  <div class="banner banner-red">
+    <h2>Report could not be generated — TrackOlap access blocked</h2>
+    <p>The scheduled run reached <code>go.trackwick.com/login</code> and submitted the configured credentials for
+    <code>rahul.dutta@knabfinance.com</code>. The server rejected the sign-in with:</p>
+    <p><strong>&ldquo;App is Temporary Suspended, Please contact Admin.&rdquo;</strong></p>
+    <p>This is an account/tenant-level suspension, not a wrong-password error — the credentials in
+    <code>/Documents/Claude/Scheduled/knab-trackolap-daily-productivity/trackolap-creds.json</code> match what was submitted,
+    so re-entering them will not help. Navigating directly to the Task Form report also redirected back to the login page
+    (no active session). <strong>Action required:</strong> contact the TrackOlap admin to reactivate the KNAB workspace,
+    then re-run this task.</p>
+  </div>
+
+  <div class="banner banner-amber">
+    <p><strong>No absence conclusions have been drawn.</strong> Because zero rows were retrieved, every rep is marked
+    <em>Data unavailable</em> rather than <em>Absent</em>. Treating a tool outage as field inactivity would produce false
+    attendance and fraud signals, so all flag rules were suspended for this run.</p>
   </div>
 
   <div class="kpis">
-    <div class="kpi"><div class="n muted">—</div><div class="l">Total visits</div></div>
-    <div class="kpi"><div class="n muted">—</div><div class="l">Reps active</div></div>
-    <div class="kpi"><div class="n muted">—</div><div class="l">Reps absent</div></div>
-    <div class="kpi"><div class="n muted">—</div><div class="l">Flags raised</div></div>
+    <div class="kpi"><div class="label">Total visits</div><div class="value">—</div></div>
+    <div class="kpi"><div class="label">Reps active</div><div class="value">—</div></div>
+    <div class="kpi"><div class="label">Reps absent</div><div class="value">—</div></div>
+    <div class="kpi"><div class="label">Flags raised</div><div class="value">—</div></div>
   </div>
 
-  <div class="card">
-    <h2>Rep summary — Fri 21 Aug 2026</h2>
-    <div class="empty">
-      <div class="big">No data retrieved</div>
-      Source system unreachable. This is not a "zero visits" day — attendance and visit counts for
-      21 Aug are simply unknown. No absence, flag, or productivity conclusions should be drawn from this page.
-    </div>
+  <h3 class="section">Rep summary — 22 Aug 2026</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Visits</th><th>First In</th><th>Last Out</th>
+        <th>Active</th><th>In-Window (10–18)</th><th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="unknown"><td>Rahul Dutta</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+      <tr class="unknown"><td>Suraj Duppatla</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+      <tr class="unknown"><td>NILADRI MUKHERJEE</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+      <tr class="unknown"><td>Lallan</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+      <tr class="unknown"><td>Kunal Kumar Jha <span class="pill pill-blue">newcomer</span></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+      <tr class="unknown"><td>Prity Kumari</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill pill-grey">Data unavailable</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">Visit detail</h3>
+  <div class="empty">
+    <div class="big">No visit data retrieved</div>
+    <div>The Task Form report was never reached — sign-in was blocked before the report screen loaded.</div>
   </div>
 
-  <div class="card">
-    <h2>Roster status</h2>
-    <table>
-      <thead>
-        <tr><th>Rep</th><th>Visits</th><th>First in</th><th>Last out</th><th>Active</th><th>In-window (10–18)</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Rahul Dutta</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-        <tr><td>Suraj Duppatla</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-        <tr><td>NILADRI MUKHERJEE</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-        <tr><td>Lallan</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-        <tr><td>Kunal Kumar Jha <span class="pill amber">newcomer</span></td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-        <tr><td>Prity Kumari</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td><span class="pill grey">Not retrieved</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2>Outage log</h2>
-    <table>
-      <thead>
-        <tr><th>Run</th><th>Target date</th><th>Result</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>21 Aug 2026, 07:05 IST</td><td>Thu 20 Aug 2026</td><td><span class="pill red">Login rejected — app suspended</span></td></tr>
-        <tr><td>22 Aug 2026, 07:06 IST</td><td>Fri 21 Aug 2026</td><td><span class="pill red">Login rejected — app suspended</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
+  <h3 class="section">Standing analysis notes</h3>
   <div class="notes">
-    <h3>Standing analysis notes</h3>
+    <h3>Carried forward — apply once data access is restored</h3>
     <ul>
-      <li><strong>Rahul Dutta</strong> — check check-in addresses against customer names; metro/petrol/hospital/cafe locations tagged as finance visits raise a GPS-mismatch flag.</li>
-      <li><strong>Rahul Dutta &amp; Suraj Duppatla</strong> — watch for the same customer logged at overlapping times (possible double-count).</li>
-      <li><strong>NILADRI MUKHERJEE</strong> — watch for off-hours-only activity (first check-in after 18:00, or &gt;50% of active time outside 10:00–18:00).</li>
-      <li><strong>Lallan</strong> — watch for late starts (first check-in after 12:00 noon).</li>
-      <li><strong>Kunal Kumar Jha</strong> — newcomer; visits are shown but fraud flags are suppressed.</li>
-      <li><strong>Prity Kumari</strong> — added 20 May 2026; standard flags apply, watch for duration anomalies (single visit &gt; 4 hours usually means a forgotten check-out).</li>
-      <li>Any employee found in the report but not on this roster is added automatically and treated as an active RM.</li>
+      <li><strong>Rahul Dutta</strong> — check GPS-mismatch: check-in addresses landing on metro stations, petrol pumps, hospitals, cafes or furniture stores while tagged to a finance customer visit.</li>
+      <li><strong>Rahul Dutta &amp; Suraj Duppatla</strong> — check for possible double-counting: visits logged to the same customer at overlapping times.</li>
+      <li><strong>NILADRI MUKHERJEE</strong> — check off-hours pattern: first check-in after 18:00, or more than half of active time falling outside the 10:00–18:00 window.</li>
+      <li><strong>Lallan</strong> — check late starts: first check-in after 12:00 noon.</li>
+      <li><strong>Kunal Kumar Jha</strong> — newcomer; show visits but skip fraud flags.</li>
+      <li><strong>Prity Kumari</strong> — added 20 May 2026; standard flags apply, watch for duration anomalies (single visit over 4 hours, likely a forgotten check-out).</li>
     </ul>
   </div>
 
   <footer>
-    KNAB Finance · automated daily run · data source: TrackOlap (go.trackwick.com) task-form visit report.
-    Run status: <strong>failed at login — source system suspended (2nd consecutive day)</strong>. Retries automatically each weekday morning.
+    Auto-generated by the KNAB daily productivity task · Source: TrackOlap Task Form report (Visit) ·
+    Live page: <a href="https://deepit-glitch.github.io/knab-productivity/">deepit-glitch.github.io/knab-productivity</a>
   </footer>
 
 </div>
