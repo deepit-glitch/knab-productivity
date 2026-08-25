@@ -1,9 +1,16 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Knab Daily Productivity",
+  "schemaVersion": 1,
+  "description": "Daily KNAB Finance field productivity report — auto-refreshed each morning from Trackolap. Shows per-rep visit counts, timings, GPS-mismatch flags, late start flags, and absent roster members."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KNAB Field Productivity — Fri 21 &amp; Sat 22 Aug 2026</title>
+<title>KNAB Field Productivity — Mon 24 Aug 2026</title>
 <style>
   :root { color-scheme: light; }
   * { box-sizing: border-box; }
@@ -29,6 +36,7 @@
     padding: 1px 5px; font-size: 12px;
   }
   .banner ul { margin: 8px 0 0; padding-left: 18px; }
+  .banner li { margin-bottom: 4px; }
 
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 6px; }
   .kpi { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 14px; background: #fff; }
@@ -69,19 +77,20 @@
 <div class="wrap">
 
   <header>
-    <h1>KNAB Field Productivity — Fri 21 &amp; Sat 22 Aug 2026</h1>
-    <div class="sub">Monday run (Fri + Sat combined, Sunday non-working) &middot; Last refreshed: Mon 24 Aug 2026, 07:05 IST</div>
+    <h1>KNAB Field Productivity — Mon 24 Aug 2026</h1>
+    <div class="sub">Tuesday run (yesterday only) &middot; Last refreshed: Tue 25 Aug 2026, 07:05 IST</div>
   </header>
 
   <div class="banner">
-    <div class="bt">Report could not be generated — TrackOlap account suspended</div>
-    Login at <code>go.trackwick.com</code> was rejected with the message:
+    <div class="bt">Report could not be generated — TrackOlap account still suspended (day 2)</div>
+    Login at <code>go.trackwick.com</code> was rejected again with the message:
     <strong>&ldquo;App is Temporary Suspended, Please contact Admin.&rdquo;</strong>
     <ul>
-      <li>Credentials in <code>trackolap-creds.json</code> are present and correctly filled — this is <em>not</em> a wrong-password failure.</li>
-      <li>The suspension is at the account / tenant level, so retrying will not help.</li>
-      <li><strong>Action needed:</strong> contact the TrackOlap admin (or your KNAB account owner) to reactivate the <code>rahul.dutta@knabfinance.com</code> login.</li>
-      <li>No visit data was retrieved for 21–22 Aug 2026. Figures below are intentionally blank rather than estimated.</li>
+      <li>This is the <strong>second consecutive failed run</strong> — the same suspension blocked the 21–22 Aug pull yesterday.</li>
+      <li>The stored credentials for <code>rahul.dutta@knabfinance.com</code> were accepted by the form; the block is at the <em>account / tenant</em> level, so retrying will not help.</li>
+      <li>Navigating directly to the Task Form report URL redirected straight back to the login page, confirming there is no usable session.</li>
+      <li><strong>Action needed:</strong> contact the TrackOlap admin (or your KNAB account owner) to reactivate the tenant. Two days of field-visit data are now un-audited.</li>
+      <li>No visit data was retrieved for 24 Aug 2026. Figures below are intentionally blank rather than estimated.</li>
     </ul>
   </div>
 
@@ -113,7 +122,7 @@
   <h2>Visit detail</h2>
   <div class="empty">
     <div class="big">No visits logged</div>
-    TrackOlap could not be reached, so no visit records were pulled for 21–22 Aug 2026.<br>
+    TrackOlap could not be reached, so no visit records were pulled for 24 Aug 2026.<br>
     This page will repopulate on the next scheduled run once the account is reactivated.
   </div>
 
@@ -132,7 +141,7 @@
 
   <footer>
     Source: TrackOlap Task Form Report (Visit) &middot; go.trackwick.com &middot; automated KNAB daily productivity run.
-    Data pull failed this run — see banner above.
+    Data pull failed this run (2nd consecutive) — see banner above.
   </footer>
 
 </div>
