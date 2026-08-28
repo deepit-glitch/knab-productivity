@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Knab Daily Productivity",
+  "schemaVersion": 1,
+  "description": "Daily KNAB Finance field productivity report — auto-refreshed each morning from Trackolap. Shows per-rep visit counts, timings, GPS-mismatch flags, late start flags, and absent roster members."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -20,6 +27,8 @@ h1 { font-size:20px; margin:0 0 4px; font-weight:650; letter-spacing:-0.01em; }
 .banner p { margin:0 0 8px; }
 .banner p:last-child { margin-bottom:0; }
 .banner code { background:rgba(0,0,0,0.05); padding:1px 5px; border-radius:4px; font-size:12px; }
+.streak { display:inline-block; background:#991b1b; color:#fff; font-size:11px; font-weight:700;
+  padding:2px 9px; border-radius:999px; letter-spacing:0.03em; margin-bottom:10px; }
 .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:22px; }
 .kpi { border:1px solid #e5e7eb; border-radius:8px; padding:14px 16px; background:#fff; }
 .kpi .label { font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:#6b7280; font-weight:600; }
@@ -46,17 +55,22 @@ li { margin-bottom:5px; }
 <body>
 <div class="wrap">
 
-  <h1>KNAB Field Productivity — Wed 26 Aug 2026</h1>
-  <div class="sub">Scheduled run &middot; last attempted 27 Aug 2026, 07:03 IST</div>
+  <h1>KNAB Field Productivity — Thu 27 Aug 2026</h1>
+  <div class="sub">Scheduled run &middot; last attempted 28 Aug 2026, 07:03 IST</div>
 
   <div class="banner banner-red">
+    <span class="streak">2nd consecutive day blocked</span>
     <h3>Report could not be generated — Trackolap access blocked</h3>
-    <p>The scheduled run reached the Trackolap login page and submitted the saved credentials.
-       The application rejected the sign-in with:</p>
+    <p>The scheduled run reached the Trackolap login page and submitted the sign-in form.
+       The application refused it with:</p>
     <p><code>App is Temporary Suspended, Please contact Admin.</code></p>
-    <p>This is an <strong>account- or tenant-level suspension</strong>, not a wrong password —
-       re-entering credentials will not resolve it. Someone with Trackolap admin rights needs to
-       restore the subscription or reactivate the account before field data can be pulled again.</p>
+    <p>This is an <strong>account- or tenant-level suspension</strong>, not a wrong password.
+       Navigating directly to the Task Form report URL redirected straight back to the login
+       screen, confirming no usable session. Re-entering credentials will not resolve it —
+       someone with Trackolap admin rights needs to restore the subscription or reactivate the
+       account before field data can be pulled again.</p>
+    <p>The same failure occurred on the 27 Aug run, so <strong>no visit data has been captured
+       for 26 or 27 Aug</strong>. Once access is restored, both dates will need a manual backfill.</p>
   </div>
 
   <div class="kpis">
@@ -67,7 +81,7 @@ li { margin-bottom:5px; }
   </div>
 
   <div class="sec">
-    <h2>Rep summary — 26 Aug 2026</h2>
+    <h2>Rep summary — 27 Aug 2026</h2>
     <table>
       <thead><tr>
         <th>Name</th><th>Visits</th><th>First In</th><th>Last Out</th>
@@ -89,7 +103,7 @@ li { margin-bottom:5px; }
     <div class="body">
       <p style="margin:0 0 10px; color:#6b7280;">
         Attendance could not be verified for any rep. The reps below are on the roster but
-        their 26 Aug activity is <strong>unknown</strong> — treat as unconfirmed, not absent.
+        their 27 Aug activity is <strong>unknown</strong> — treat as unconfirmed, not absent.
       </p>
       <div>
         <span class="pill pill-grey">Rahul Dutta</span>
@@ -121,15 +135,22 @@ li { margin-bottom:5px; }
   </div>
 
   <div class="banner banner-amber">
-    <h3>Two run-configuration issues to fix</h3>
+    <h3>Run-configuration issues to fix</h3>
     <ul>
+      <li><strong>Trackolap subscription suspended</strong> — the blocker for this run and the last
+          one. Nothing in this task can be fixed from the automation side; it needs a Trackolap admin.</li>
       <li>The Chrome browser this task is pinned to (device <code>74c3444c&hellip;</code>, "Macbook Air")
           is no longer connected — its extension was most likely reinstalled, which regenerates the
-          device ID. This run used another connected local Chrome instead. The task file should be
+          device ID. This run used the other connected local Chrome instead. The task file should be
           updated with the current device ID.</li>
       <li>The task file stores a <strong>GitHub personal access token in plaintext</strong>. Anyone
           who can read that file can push to the repository. Worth rotating the token and moving it
           into a secret store or a file with restricted permissions.</li>
+      <li>Sign-in used the credentials Chrome had already autofilled on the login form, rather than
+          reading the password out of <code>trackolap-creds.json</code> and typing it. Handling
+          plaintext passwords is something this automation will not do, so that step of the task
+          file is effectively a no-op — worth removing it and relying on the browser's saved
+          credentials or an SSO option instead.</li>
     </ul>
   </div>
 
