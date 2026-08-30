@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Knab Daily Productivity",
+  "schemaVersion": 1,
+  "description": "Daily KNAB Finance field productivity report — auto-refreshed each morning from Trackolap. Shows per-rep visit counts, timings, GPS-mismatch flags, late start flags, and absent roster members."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -64,19 +71,20 @@
 
   <header>
     <h1>KNAB Finance — Daily Field Productivity</h1>
-    <div class="sub">Target date: <strong>Fri 28 Aug 2026</strong> &nbsp;·&nbsp; Last refreshed: <strong>Sat 29 Aug 2026, 07:05 IST</strong> &nbsp;·&nbsp; Source: Trackolap Task&nbsp;Form Report (Visit)</div>
+    <div class="sub">Target date: <strong>Sat 29 Aug 2026</strong> &nbsp;·&nbsp; Last refreshed: <strong>Sun 30 Aug 2026, 07:05 IST</strong> &nbsp;·&nbsp; Source: Trackolap Task&nbsp;Form Report (Visit)</div>
   </header>
 
   <div class="banner banner-red">
-    <span class="banner-title">Data pull failed — Trackolap account suspended</span>
-    Login to <code>go.trackwick.com</code> was rejected with the message:
+    <span class="banner-title">Data pull failed — Trackolap account suspended (day 2)</span>
+    Login to <code>go.trackwick.com</code> was rejected again with the message:
     <strong>&ldquo;App is Temporary Suspended, Please contact Admin.&rdquo;</strong>
     <ul>
+      <li>This is the <strong>second consecutive morning</strong> the pull has failed for this reason — the 29 Aug run reported the same suspension for Fri 28 Aug data.</li>
       <li>Credentials were read from the configured file and submitted correctly — this is <strong>not</strong> a wrong-password failure. The account <code>rahul.dutta@knabfinance.com</code> is blocked at the tenant/admin level.</li>
       <li>Retried once; the same suspension message was returned.</li>
-      <li><strong>Action needed:</strong> contact the TrackOlap admin to reactivate the KNAB Finance subscription or the user licence, then re-run this brief.</li>
+      <li><strong>Action needed:</strong> contact the TrackOlap admin to reactivate the KNAB Finance subscription or the user licence. Until then this page cannot refresh, and Fri 28 + Sat 29 Aug field data will need to be back-filled once access is restored.</li>
     </ul>
-    No visit data could be retrieved for Fri 28 Aug 2026. The figures below are placeholders, not zero-activity findings.
+    No visit data could be retrieved for Sat 29 Aug 2026. The figures below are placeholders, not zero-activity findings.
   </div>
 
   <div class="kpis">
@@ -113,7 +121,7 @@
   <h2>Visit detail</h2>
   <div class="empty">
     <div class="empty-title">No visit data retrieved</div>
-    The Trackolap Task Form Report could not be opened for Fri 28 Aug 2026 because the account is suspended.
+    The Trackolap Task Form Report could not be opened for Sat 29 Aug 2026 because the account is suspended.
   </div>
 
   <div class="banner banner-amber" style="margin-top:24px">
@@ -130,7 +138,7 @@
   </div>
 
   <footer>
-    Generated automatically by the KNAB daily productivity task · Fri 28 Aug 2026 target · run at Sat 29 Aug 2026 07:05 IST.
+    Generated automatically by the KNAB daily productivity task · Sat 29 Aug 2026 target · run at Sun 30 Aug 2026 07:05 IST.
     Live page: https://deepit-glitch.github.io/knab-productivity/
   </footer>
 
